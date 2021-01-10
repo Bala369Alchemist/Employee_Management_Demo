@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,15 +28,20 @@ public class User {
 	private Long userId;
 	
 	@Column(name = "first_name")
+	@NotEmpty
 	private String firstName;
 	
 	@Column(name = "last_name")
+	@NotEmpty
 	private String lastName;
 	
-	@Column(name = "email")
+	@Column(name = "email" , unique = true)
+	@NotEmpty
+	@Email
 	private String email;
 	
 	@Column(name = "department_id")
+	@NotEmpty
 	private Long departmentId;
 	
 	
