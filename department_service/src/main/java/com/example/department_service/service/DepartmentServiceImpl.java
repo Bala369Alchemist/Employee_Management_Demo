@@ -3,6 +3,8 @@ package com.example.department_service.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.department_service.entity.Department;
@@ -18,9 +20,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	private DepartmentRepository deptRepo;
 
 	@Override
-	public List<Department> getAllDepartment() {
+	public ResponseEntity<List<Department>> getAllDepartment() {
 		log.info("from getAllDepartment method of DepartmentService");
-		return deptRepo.findAll();
+		List<Department> departments = deptRepo.findAll();
+		if(departments.isEmpty()) {
+			return new ResponseEntity<List<Department>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Department>>(departments,HttpStatus.OK);
 	}
 
 	@Override

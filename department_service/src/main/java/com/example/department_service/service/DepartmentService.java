@@ -2,11 +2,13 @@ package com.example.department_service.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.example.department_service.entity.Department;
 
 public interface DepartmentService {
 
-	List<Department> getAllDepartment();
+	ResponseEntity<List<Department>> getAllDepartment();
 
 	Department findByDepartmentId(Long departmentId);
 

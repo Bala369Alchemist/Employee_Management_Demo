@@ -2,6 +2,8 @@ package com.example.user_service.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ public class UserRestController {
 	
 	// to get all users
 	@GetMapping(value = "/")
-	public List<User> getAllUser() {
+	public  List<User> getAllUser() {
 		log.info("from getAllUser method of UserRestController");
 		return userServ.getAllUser();
 	}
@@ -47,7 +49,7 @@ public class UserRestController {
 	
 	// to add new user
 	@PostMapping(value = "/")
-	public User saveUser(@RequestBody User user) {
+	public User saveUser(@Valid  @RequestBody User user) {
 		log.info("from saveUser method of UserRestController");
 		return userServ.saveUser(user);
 	}

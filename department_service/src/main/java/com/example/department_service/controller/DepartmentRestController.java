@@ -2,7 +2,10 @@ package com.example.department_service.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +29,7 @@ public class DepartmentRestController {
 	private DepartmentService deptServ;
 	
 	@GetMapping(value = "/")
-	public List<Department> getAllDepartment(){
+	public ResponseEntity<List<Department>> getAllDepartment(){
 		log.info("from getAllDepartment method of DepartmentRestController");
 		return deptServ.getAllDepartment();
 	}
@@ -38,7 +41,7 @@ public class DepartmentRestController {
 	}
 	
 	@PostMapping(value = "/")
-	public Department saveDepartment(@RequestBody Department department) {
+	public Department saveDepartment(@Valid @RequestBody Department department) {
 		log.info("from saveDepartment method of DepartmentRestController");
 		return deptServ.saveDepartment(department);
 	}
